@@ -20,10 +20,10 @@ public class Location {
     private Long id;
 
     @Column(name = "lat")
-    private double lat;
+    private float lat;
 
     @Column(name = "lon")
-    private double lon;
+    private float lon;
 
     @Override
     public String toString() {
