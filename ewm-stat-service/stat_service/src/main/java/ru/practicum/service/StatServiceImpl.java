@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.dao.StatServiceRepository;
+import ru.practicum.exception.TimeException;
 import ru.practicum.model.Stat;
 import ru.practicum.model.StatUniqueOrNot;
 
@@ -22,28 +23,31 @@ public class StatServiceImpl implements StatService {
     @Transactional
     @Override
     public Stat postStat(Stat stat) {
-        log.info("create new stat");
+        log.info("Create new stat");
         return serviceRepository.save(stat);
     }
 
     @Override
     public List<StatUniqueOrNot> getStat(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         List<StatUniqueOrNot> list;
-        if (uris.isEmpty()) { //если список uri пуст
-            if (unique) { //если надо учитывать уникальность
+        if (start.isAfter(end)) {
+            throw new TimeException("The start date cannot be later than the end date");
+        }
+        if (uris.isEmpty()) {
+            if (unique) {
                 list = serviceRepository.findAllByUriAndIp(start, end);
-                log.info("get unique list without uris");
-            } else { //если не надо учитывать уникальность
+                log.info("Get unique list without uris");
+            } else {
                 list = serviceRepository.findAllByTimestampBetween(start, end);
-                log.info("get not unique list without uris");
+                log.info("Get not unique list without uris");
             }
-        } else { //если список uri не пуст
-            if (unique) { //если надо учитывать уникальность
+        } else {
+            if (unique) {
                 list = serviceRepository.findAllByUriAndIpAndUris(start, end, uris);
-                log.info("get unique list with uris");
-            } else { //если не надо учитывать уникальность
+                log.info("Get unique list with uris");
+            } else {
                 list = serviceRepository.findAllByUriAndIpAndUrisNotUnique(start, end, uris);
-                log.info("get not unique list with uris");
+                log.info("Get not unique list with uris");
             }
         }
         return list;
