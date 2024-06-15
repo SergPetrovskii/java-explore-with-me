@@ -11,6 +11,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.practicum.dto.HitDto;
+import ru.practicum.dto.HitStatDto;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -65,7 +66,7 @@ public class StatClient extends BaseClient {
         ));
     }
 
-    public List<HitDto> get(String start, String end, List<String> uris, Boolean unique) {
+    public List<HitStatDto> get(String start, String end, List<String> uris, Boolean unique) {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("start", start);
@@ -82,7 +83,7 @@ public class StatClient extends BaseClient {
         ResponseEntity<Object> response = rest
                 .exchange(serverUrl + "/stats?start={start}&end={end}&uri={{uri}}&unique={unique}",
                         HttpMethod.GET, requestEntity, Object.class, parameters);
-        List<HitDto> result = objectMapper.convertValue(response.getBody(), new TypeReference<>(){});
+        List<HitStatDto> result = objectMapper.convertValue(response.getBody(), new TypeReference<>(){});
         if (result == null) {
             return List.of();
         } else {

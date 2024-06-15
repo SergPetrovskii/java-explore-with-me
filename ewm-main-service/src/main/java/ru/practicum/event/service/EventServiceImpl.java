@@ -12,6 +12,7 @@ import ru.practicum.category.model.Category;
 import ru.practicum.category.repository.CategoryRepository;
 import ru.practicum.client.StatClient;
 import ru.practicum.dto.HitDto;
+import ru.practicum.dto.HitStatDto;
 import ru.practicum.event.EventMapper;
 import ru.practicum.event.dto.*;
 import ru.practicum.event.model.Event;
@@ -239,11 +240,11 @@ public class EventServiceImpl implements EventService {
         }
         Event earliestEvent = Collections.min(events, Comparator.comparing(Event::getEventDate));
         log.info("uris {}", uris);
-        List<HitDto> stats = client.get(earliestEvent.getEventDate().format(DATE_TIME_FORMATTER),
+        List<HitStatDto> stats = client.get(earliestEvent.getEventDate().format(DATE_TIME_FORMATTER),
                 LocalDateTime.now().format(DATE_TIME_FORMATTER), uris, true);
         log.info("stats {}", stats);
         Map<Long, Long> hits = new HashMap<>();
-        for (HitDto viewStatsDto: stats) {
+        for (HitStatDto viewStatsDto: stats) {
             Long id = Long.parseLong(viewStatsDto.getUri().split("/")[2]);
             log.info(id.toString());
             hits.put(id, viewStatsDto.getHits());
@@ -259,11 +260,11 @@ public class EventServiceImpl implements EventService {
         }
         Event earliestEvent = Collections.min(events, Comparator.comparing(Event::getEventDate));
         log.info("uris {}", uris);
-        List<HitDto> stats = client.get(earliestEvent.getEventDate().format(DATE_TIME_FORMATTER),
+        List<HitStatDto> stats = client.get(earliestEvent.getEventDate().format(DATE_TIME_FORMATTER),
                 LocalDateTime.now().format(DATE_TIME_FORMATTER), uris, true);
         log.info("stats {}", stats);
         Map<Long, Long> hits = new HashMap<>();
-        for (HitDto viewStatsDto: stats) {
+        for (HitStatDto viewStatsDto: stats) {
             log.info(viewStatsDto.getUri());
             Long id = Long.parseLong(viewStatsDto.getUri().split("/")[1]);
             log.info(id.toString());
