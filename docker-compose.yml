@@ -4,9 +4,9 @@ services:
     build: ./ewm-stat-service/stat_service
 
     image:
-      stats-server
+      stats_server
     container_name:
-      stats-server
+      stats_server
     ports:
       - "9090:9090"
       - "9091:9091"
