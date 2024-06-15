@@ -60,7 +60,7 @@ class StatServiceControllerITTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(statDto))
                         .characterEncoding(StandardCharsets.UTF_8))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -92,7 +92,7 @@ class StatServiceControllerITTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        assertEquals(newUniqueList, objectMapper.writeValueAsString(listUnique));
+        assertEquals(newUniqueList, objectMapper.writeValueAsString(listUnique)); //проверка на получение уникальных записей без учеба uri
 
         verify(statService).getStat(startDate, endDate, uris, unique);
     }

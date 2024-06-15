@@ -1,6 +1,5 @@
 package ru.practicum.client;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,8 @@ import java.util.Map;
 @Service
 public class StatClient extends BaseClient {
 
-    @Autowired
-    public StatClient(@Value("${stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
+
+    public StatClient(@Value("${ewm-stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
         super(
                 builder
                         .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
@@ -40,11 +39,11 @@ public class StatClient extends BaseClient {
                     "unique", unique);
             return get("/stats?start={start}&end={end}&unique={unique}", parameters);
         } else {
-            parameters = Map.of("start", start,
-                    "end", end,
+            parameters = Map.of("start", encodeValue(start),
+                    "end", encodeValue(end),
                     "uris", String.join(",", uris),
                     "unique", unique);
-            return get("/stats?start={start}&end={end}&uris={uris}&unique={unique}", parameters);
+            return get("/stats?start={start}&end={end}&unique={unique}&uris={uris}", parameters);
         }
     }
 
