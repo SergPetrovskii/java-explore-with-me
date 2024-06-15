@@ -7,9 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HitStatDto {
+public class HitToRepo {
     private String app;
     private String uri;
     private Long hits;
 }
-

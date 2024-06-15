@@ -18,7 +18,7 @@ public class Stat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long statId;
+    private Long statId;
 
     @Column(name = "app")
     private String app;

@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS stat
     uri        VARCHAR(50)                             NOT NULL,
     ip         VARCHAR(15)                             NOT NULL,
     time_stamp TIMESTAMP                               NOT NULL,
+    id_hit     INT8 UNIQUE,
     CONSTRAINT pk_stat PRIMARY KEY (id)
 );

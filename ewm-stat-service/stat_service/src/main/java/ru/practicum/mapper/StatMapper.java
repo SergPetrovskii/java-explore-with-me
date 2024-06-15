@@ -1,39 +1,35 @@
 package ru.practicum.mapper;
 
-import lombok.experimental.UtilityClass;
-import ru.practicum.dto.StatDto;
-import ru.practicum.dto.StatUniqueOrNotDto;
+import org.springframework.stereotype.Component;
+import ru.practicum.dto.*;
 import ru.practicum.model.Stat;
 import ru.practicum.model.StatUniqueOrNot;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@UtilityClass
+@Component
 public class StatMapper {
 
-
-    public Stat toStat(StatDto statDto) {
+    public static Stat toStats(HitDto hitDto) {
 
         return Stat.builder()
-                .ip(statDto.getIp())
-                .uri(statDto.getUri())
-                .timestamp(statDto.getTimestamp())
-                .app(statDto.getApp())
+                .ip(hitDto.getIp())
+                .uri(hitDto.getUri())
+                .timestamp(hitDto.getTimestamp())
+                .app(hitDto.getApp())
                 .build();
     }
 
-    public StatDto toStatDto(Stat stat) {
-        return StatDto.builder()
-                .timestamp(stat.getTimestamp())
-                .app(stat.getApp())
-                .uri(stat.getUri())
-                .ip(stat.getIp())
-                .build();
+    public static HitStatDto toStatDto(HitToRepo hit) {
+        HitStatDto hitDto = new HitStatDto();
+        hitDto.setHits(hit.getHits());
+        hitDto.setApp(hit.getApp());
+        hitDto.setUri(hit.getUri());
+        return hitDto;
     }
 
-
-    public StatUniqueOrNotDto toStatDtoFromStatUnique(StatUniqueOrNot statUniqueOrNot) {
+    public static StatUniqueOrNotDto toStatDtoFromStatUnique(StatUniqueOrNot statUniqueOrNot) {
         return StatUniqueOrNotDto.builder()
                 .app(statUniqueOrNot.getApp())
                 .hits(statUniqueOrNot.getHits())
@@ -41,7 +37,7 @@ public class StatMapper {
                 .build();
     }
 
-    public List<StatUniqueOrNotDto> toListStatDtoFromStatUnique(List<StatUniqueOrNot> list) {
+    public static List<StatUniqueOrNotDto> toListStatDtoFromStatUnique(List<StatUniqueOrNot> list) {
         return list.stream().map(StatMapper::toStatDtoFromStatUnique).collect(Collectors.toList());
     }
 }

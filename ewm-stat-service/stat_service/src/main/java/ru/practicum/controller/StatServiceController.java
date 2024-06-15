@@ -3,8 +3,10 @@ package ru.practicum.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.dto.HitDto;
 import ru.practicum.dto.Marker;
 import ru.practicum.dto.StatDto;
 import ru.practicum.dto.StatUniqueOrNotDto;
@@ -26,10 +28,10 @@ public class StatServiceController {
     private final StatService statService;
 
     @PostMapping("/hit")
-    public StatDto postStatEvent(@RequestBody @Validated(Marker.Create.class) StatDto stat) {
-        Stat statEvent = statService.postStat(StatMapper.toStat(stat));
-        log.info("create hit by uri ={}", stat.getUri());
-        return StatMapper.toStatDto(statEvent);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void hit(@RequestBody HitDto hitDto) {
+        log.info("controller");
+        statService.postStat(hitDto);
     }
 
     @GetMapping("/stats")
