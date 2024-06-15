@@ -1,9 +1,10 @@
 package ru.practicum.request.service;
 
-import java.util.List;
-import ru.practicum.request.dto.UpdateRequestDto;
 import ru.practicum.request.dto.RequestDto;
 import ru.practicum.request.dto.RequestStatusesDto;
+import ru.practicum.request.dto.UpdateRequestDto;
+
+import java.util.List;
 
 public interface RequestService {
 

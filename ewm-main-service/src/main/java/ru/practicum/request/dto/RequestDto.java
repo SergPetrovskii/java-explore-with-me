@@ -2,13 +2,10 @@ package ru.practicum.request.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ru.practicum.request.model.RequestStatus;
+
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor

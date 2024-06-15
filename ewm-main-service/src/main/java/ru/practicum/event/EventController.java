@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.client.StatClient;
 import ru.practicum.event.dto.*;
-
 import ru.practicum.event.service.EventService;
 
 import javax.servlet.http.HttpServletRequest;

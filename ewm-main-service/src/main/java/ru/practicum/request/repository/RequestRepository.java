@@ -1,11 +1,11 @@
 package ru.practicum.request.repository;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ru.practicum.request.model.Request;
+
+import java.util.List;
+import java.util.Map;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
 

@@ -1,17 +1,18 @@
 package ru.practicum.category.service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.practicum.category.dto.CategoryDto;
 import ru.practicum.category.CategoryMapper;
+import ru.practicum.category.dto.CategoryDto;
 import ru.practicum.category.model.Category;
 import ru.practicum.category.repository.CategoryRepository;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor

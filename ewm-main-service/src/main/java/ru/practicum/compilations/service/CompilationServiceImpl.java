@@ -1,21 +1,22 @@
 package ru.practicum.compilations.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ru.practicum.compilations.dto.CompilationDtoToCreate;
-import ru.practicum.compilations.dto.CompilationDto;
 import ru.practicum.compilations.CompilationMapper;
+import ru.practicum.compilations.dto.CompilationDto;
+import ru.practicum.compilations.dto.CompilationDtoToCreate;
 import ru.practicum.compilations.dto.CompilationDtoToUpdate;
 import ru.practicum.compilations.model.Compilation;
 import ru.practicum.compilations.repository.CompilationRepository;
 import ru.practicum.event.repository.EventRepository;
 import ru.practicum.exceptions.ValidationException;
+
+import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

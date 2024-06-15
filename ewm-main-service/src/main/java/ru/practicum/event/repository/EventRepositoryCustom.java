@@ -1,9 +1,9 @@
 package ru.practicum.event.repository;
 
+import ru.practicum.event.model.Event;
+
 import java.time.LocalDateTime;
 import java.util.List;
-
-import ru.practicum.event.model.Event;
 
 public interface EventRepositoryCustom {
 

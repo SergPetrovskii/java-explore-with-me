@@ -1,7 +1,8 @@
 package ru.practicum.user.repository;
 
-import java.util.List;
 import ru.practicum.user.dto.UserDto;
+
+import java.util.List;
 
 public interface UserRepositoryCustom {
 
