@@ -1,7 +1,10 @@
 package ru.practicum.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.practicum.dto.*;
+import ru.practicum.dto.HitDto;
+import ru.practicum.dto.HitStatDto;
+import ru.practicum.dto.HitToRepo;
+import ru.practicum.dto.StatUniqueOrNotDto;
 import ru.practicum.model.Stat;
 import ru.practicum.model.StatUniqueOrNot;
 

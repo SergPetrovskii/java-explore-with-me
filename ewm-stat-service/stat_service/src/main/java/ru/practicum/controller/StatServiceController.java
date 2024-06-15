@@ -7,11 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.HitDto;
-import ru.practicum.dto.Marker;
-import ru.practicum.dto.StatDto;
 import ru.practicum.dto.StatUniqueOrNotDto;
 import ru.practicum.mapper.StatMapper;
-import ru.practicum.model.Stat;
 import ru.practicum.model.StatUniqueOrNot;
 import ru.practicum.service.StatService;
 
