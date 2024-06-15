@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class LocationDto {
 
-    private float lat;
+    private double lat;
 
-    private float lon;
+    private double lon;
 }
