@@ -1,9 +1,9 @@
 version: '3.1'
 services:
   stats-server:
-    build: ./ewm-stat-service/stat_service
-    image: stats-server
-    container_name: stats-server
+    build: ewm-stat-service
+    image: ewm-stat-service
+    container_name: ewm-stat-service
     ports:
       - "9090:9090"
       - "9091:9091"
@@ -27,10 +27,9 @@ services:
       - POSTGRES_PASSWORD=iamroot
 
   ewm-service:
-    build: ./ewm-main-service
-    image:
-      ewm-service:latest
-    container_name: ewm-service
+    build: ewm-main-service
+    image: ewm-main-service
+    container_name: ewm-main-service
     ports:
       - "8080:8080"
 
