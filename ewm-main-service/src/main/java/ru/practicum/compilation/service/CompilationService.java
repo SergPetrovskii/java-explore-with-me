@@ -13,6 +13,7 @@ import ru.practicum.compilation.repository.CompilationRepository;
 import ru.practicum.event.model.Event;
 import ru.practicum.event.service.EventPublicService;
 import ru.practicum.exceptions.CompilationNotFoundException;
+import ru.practicum.exceptions.EventBadRequestException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,6 +49,15 @@ public class CompilationService implements CompilationServiceInterface {
     @Transactional
     public CompilationDto save(NewCompilationDto dto) {
         Compilation compilation = toCompilation(dto);
+        if (dto.getTitle().isEmpty() || dto.getTitle().isBlank()
+                )  {
+            throw new EventBadRequestException("Не хватает данных в запросе") {
+                @Override
+                public String getMessage() {
+                    return super.getMessage();
+                }
+            };
+        }
 
         if (dto.getPinned() == null) {
             compilation.setPinned(false);
