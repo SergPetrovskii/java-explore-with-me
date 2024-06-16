@@ -30,6 +30,7 @@ public class NewEventDto {
     @Size(min = 20, max = 2000, message = "Annotation must not be blank or empty and contain between 20 and 2000 characters.")
     private String annotation;
     @NotNull
+    @NotBlank
     @Size(min = 20, max = 7000, message = "Description must not be blank or empty and contain between 20 and 7000 characters.")
     private String description;
     @NotNull
