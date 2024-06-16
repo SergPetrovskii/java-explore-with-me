@@ -44,20 +44,20 @@ public class EventPrivateService implements EventPrivateServiceInterface {
     public EventFullDto save(Long userId, NewEventDto dto) {
         User user = userService.getExistingUser(userId);
         if (dto.getDescription().isEmpty() || dto.getDescription().isBlank()
-                || dto.getAnnotation().isEmpty() || dto.getAnnotation().isBlank()) {
+                || dto.getAnnotation().isEmpty() || dto.getAnnotation().isBlank())  {
             throw new EventBadRequestException("Не хватает данных в запросе") {
                 @Override
                 public String getMessage() {
                     return super.getMessage();
                 }
             };
-        }
+        } else {
         validateDateForUpdateAndCreateByUser(dto.getEventDate());
 
         Event event = toEvent(dto);
         setPropertiesWhenCreating(user, dto, event);
 
-        return toEventFullDto(eventRepository.save(event));
+        return toEventFullDto(eventRepository.save(event));}
     }
 
     @Override
