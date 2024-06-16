@@ -1,9 +1,7 @@
 package ru.practicum.client;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.lang.Nullable;
 import org.springframework.web.client.RestTemplate;
 
