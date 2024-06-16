@@ -57,7 +57,8 @@ public class EventPrivateService implements EventPrivateServiceInterface {
         Event event = toEvent(dto);
         setPropertiesWhenCreating(user, dto, event);
 
-        return toEventFullDto(eventRepository.save(event));}
+        return toEventFullDto(eventRepository.save(event));
+        }
     }
 
     @Override
