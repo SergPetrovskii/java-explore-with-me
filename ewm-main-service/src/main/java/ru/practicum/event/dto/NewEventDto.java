@@ -25,6 +25,7 @@ public class NewEventDto {
     @NotBlank
     @Size(min = 3, max = 120, message = "Title must not be blank or empty and contain between 3 and 120 characters.")
     private String title;
+    @NotNull
     @NotBlank
     @Size(min = 20, max = 2000, message = "Annotation must not be blank or empty and contain between 20 and 2000 characters.")
     private String annotation;
