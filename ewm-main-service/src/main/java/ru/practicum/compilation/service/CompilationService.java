@@ -48,7 +48,6 @@ public class CompilationService implements CompilationServiceInterface {
     @Override
     @Transactional
     public CompilationDto save(NewCompilationDto dto) {
-        Compilation compilation = toCompilation(dto);
         if (dto.getTitle().isEmpty() || dto.getTitle().isBlank() || dto.getTitle().length() > 50
                 )  {
             throw new EventBadRequestException("Не хватает данных в запросе") {
@@ -57,18 +56,20 @@ public class CompilationService implements CompilationServiceInterface {
                     return super.getMessage();
                 }
             };
-        }
+        } else {
+            Compilation compilation = toCompilation(dto);
 
-        if (dto.getPinned() == null) {
-            compilation.setPinned(false);
-        }
+            if (dto.getPinned() == null) {
+                compilation.setPinned(false);
+            }
 
-        if (dto.getEvents() != null) {
-            List<Event> events = eventService.findAllEventsWithIdIn(dto.getEvents());
-            compilation.setEvents(events);
-        }
+            if (dto.getEvents() != null) {
+                List<Event> events = eventService.findAllEventsWithIdIn(dto.getEvents());
+                compilation.setEvents(events);
+            }
 
-        return toCompilationDto(compilationRepository.save(compilation));
+            return toCompilationDto(compilationRepository.save(compilation));
+        }
     }
 
     @Override
