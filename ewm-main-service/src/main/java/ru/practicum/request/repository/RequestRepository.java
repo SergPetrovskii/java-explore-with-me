@@ -1,33 +1,29 @@
 package ru.practicum.request.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import ru.practicum.request.model.Request;
+import org.springframework.stereotype.Repository;
+import ru.practicum.request.model.ParticipationRequest;
+import ru.practicum.request.model.RequestStatus;
 
 import java.util.List;
-import java.util.Map;
 
-public interface RequestRepository extends JpaRepository<Request, Long> {
+@Repository
+public interface RequestRepository extends JpaRepository<ParticipationRequest, Long> {
+    boolean existsByEventIdAndRequesterId(long eventId, long requesterId);
 
-  List<Request> findAllByUserId(long userId);
+    ParticipationRequest findByIdAndRequesterId(long id, long requesterId);
 
-  List<Request> findAllByEventId(long eventId);
+    List<ParticipationRequest> findAllByEventId(long eventId);
 
-  boolean existsByEventIdAndUserId(long eventId, long userId);
+    List<ParticipationRequest> findAllByRequesterId(long requesterId);
 
-  List<Request> findAllByIdIn(List<Long> list);
+    long countByEventIdAndStatus(Long eventId, RequestStatus status);
 
-  @Query(value = "select * " +
-          "from requests as r " +
-          "WHERE r.event_id = ?1 " +
-          "AND r.status='CONFIRMED' ",
-          nativeQuery = true)
-  List<Request> getRequestsEventConfirmed(int id);
+    List<ParticipationRequest> findAllByEventIdInAndStatus(List<Long> eventsIds, RequestStatus status);
 
-  @Query(value = "select * " +
-          "from requests as r " +
-          "WHERE r.event_id = ?1 " +
-          "AND r.status='CONFIRMED' ",
-          nativeQuery = true)
-  Map<Long, Integer> getRequestsEventsConfirmed(List<Long> eventIds);
+    List<ParticipationRequest> findAllByIdInAndEventIdAndStatus(
+        List<Long> requestIds,
+        Long eventId,
+        RequestStatus status
+    );
 }

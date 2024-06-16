@@ -1,26 +1,23 @@
 package ru.practicum.category.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "categories")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Category {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
-  @Column(unique = true, nullable = false)
-  private String name;
-
-  public Category(Long category) {
-    this.id = category;
-  }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id", nullable = false)
+    private Long id;
+    @Column(nullable = false, unique = true)
+    private String name;
 }

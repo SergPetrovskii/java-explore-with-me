@@ -2,9 +2,9 @@ package ru.practicum.mapper;
 
 import org.springframework.stereotype.Component;
 import ru.practicum.dto.HitDto;
-import ru.practicum.dto.HitStatDto;
 import ru.practicum.dto.HitToRepo;
 import ru.practicum.dto.StatUniqueOrNotDto;
+import ru.practicum.dto.ViewStats;
 import ru.practicum.model.Stat;
 import ru.practicum.model.StatUniqueOrNot;
 
@@ -24,8 +24,8 @@ public class StatMapper {
                 .build();
     }
 
-    public static HitStatDto toStatDto(HitToRepo hit) {
-        HitStatDto hitDto = new HitStatDto();
+    public static ViewStats toStatDto(HitToRepo hit) {
+        ViewStats hitDto = new ViewStats();
         hitDto.setHits(hit.getHits());
         hitDto.setApp(hit.getApp());
         hitDto.setUri(hit.getUri());
