@@ -29,7 +29,7 @@ public class EventPrivateController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto save(@PathVariable @PositiveOrZero Long userId,
-                             @RequestParam @Valid NewEventDto dto) {
+                             @RequestBody @Valid NewEventDto dto) {
         log.info("Добавление нового события");
 
         return eventServiceInterface.save(userId, dto);
