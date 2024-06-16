@@ -4,12 +4,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.event.dto.*;
+import ru.practicum.event.dto.EventFullDto;
+import ru.practicum.event.dto.EventShortDto;
+import ru.practicum.event.dto.NewEventDto;
+import ru.practicum.event.dto.UpdateEventUserRequest;
 import ru.practicum.event.service.EventPrivateServiceInterface;
-import ru.practicum.request.dto.*;
+import ru.practicum.request.dto.EventRequestStatusUpdateRequest;
+import ru.practicum.request.dto.EventRequestStatusUpdateResult;
+import ru.practicum.request.dto.ParticipationRequestDto;
 import ru.practicum.request.service.RequestServiceInterface;
 
 import javax.validation.Valid;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @RestController
@@ -22,7 +28,8 @@ public class EventPrivateController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EventFullDto save(@PathVariable Long userId, @RequestBody @Valid NewEventDto dto) {
+    public EventFullDto save(@PathVariable @PositiveOrZero Long userId,
+                             @RequestBody @Valid NewEventDto dto) {
         log.info("Добавление нового события");
 
         return eventServiceInterface.save(userId, dto);
@@ -30,7 +37,7 @@ public class EventPrivateController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<EventShortDto> findUserEvents(@PathVariable Long userId,
+    public List<EventShortDto> findUserEvents(@PathVariable @PositiveOrZero Long userId,
         @RequestParam(defaultValue = "0", required = false) Integer from,
         @RequestParam(defaultValue = "10", required = false) Integer size) {
         log.info("Получение событий, добавленных текущим пользователем");
@@ -40,7 +47,8 @@ public class EventPrivateController {
 
     @GetMapping("/{eventId}")
     @ResponseStatus(HttpStatus.OK)
-    public EventFullDto findUserFullEvent(@PathVariable Long userId, @PathVariable Long eventId) {
+    public EventFullDto findUserFullEvent(@PathVariable @PositiveOrZero Long userId,
+                                          @PathVariable @PositiveOrZero Long eventId) {
         log.info("Получение полной информации о событии добавленном текущим пользователем");
 
         return eventServiceInterface.findUserFullEvent(userId, eventId);
@@ -49,8 +57,8 @@ public class EventPrivateController {
     @PatchMapping("/{eventId}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto updateByUser(
-        @PathVariable Long userId,
-        @PathVariable Long eventId,
+        @PathVariable @PositiveOrZero Long userId,
+        @PathVariable @PositiveOrZero Long eventId,
         @RequestBody @Valid UpdateEventUserRequest dto) {
         log.info("Изменение события добавленного текущим пользователем");
 
@@ -59,7 +67,8 @@ public class EventPrivateController {
 
     @GetMapping("/{eventId}/requests")
     @ResponseStatus(HttpStatus.OK)
-    public List<ParticipationRequestDto> findEventRequestsByOwner(@PathVariable Long userId, @PathVariable Long eventId) {
+    public List<ParticipationRequestDto> findEventRequestsByOwner(@PathVariable @PositiveOrZero Long userId,
+                                                                  @PathVariable @PositiveOrZero Long eventId) {
         log.info("Получение информации о запросах на участие в событии текущего пользователя");
 
         return requestServiceInterface.findEventRequestsByOwner(userId, eventId);
