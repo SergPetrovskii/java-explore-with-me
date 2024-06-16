@@ -49,7 +49,7 @@ public class CompilationService implements CompilationServiceInterface {
     @Transactional
     public CompilationDto save(NewCompilationDto dto) {
         Compilation compilation = toCompilation(dto);
-        if (dto.getTitle().isEmpty() || dto.getTitle().isBlank()
+        if (dto.getTitle().isEmpty() || dto.getTitle().isBlank() || dto.getTitle().length() > 50
                 )  {
             throw new EventBadRequestException("Не хватает данных в запросе") {
                 @Override
@@ -74,6 +74,14 @@ public class CompilationService implements CompilationServiceInterface {
     @Override
     @Transactional
     public CompilationDto update(Long compId, UpdateCompilationRequest dto) {
+        if (dto.getTitle().length() > 50)  {
+            throw new EventBadRequestException("Не хватает данных в запросе") {
+                @Override
+                public String getMessage() {
+                    return super.getMessage();
+                }
+            };
+        }
         Compilation updated = getExistingCompilation(compId);
 
         if (dto.getTitle() != null && !dto.getTitle().isBlank()) {
