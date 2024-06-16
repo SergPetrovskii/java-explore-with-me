@@ -43,7 +43,7 @@ public class EventPrivateService implements EventPrivateServiceInterface {
     @Transactional
     public EventFullDto save(Long userId, NewEventDto dto) {
         User user = userService.getExistingUser(userId);
-        if (dto.getDescription().isEmpty()||dto.getDescription().isBlank()) {
+        if (dto.getDescription().isEmpty() || dto.getDescription().isBlank()) {
             throw new EventBadRequestException("Не хватает данных в запросе") {
                 @Override
                 public String getMessage() {
