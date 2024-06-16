@@ -11,6 +11,7 @@ import ru.practicum.category.repository.CategoryRepository;
 import ru.practicum.event.service.EventPublicService;
 import ru.practicum.exceptions.CategoryConflictException;
 import ru.practicum.exceptions.CategoryNotFoundException;
+import ru.practicum.exceptions.EventBadRequestException;
 
 import static ru.practicum.category.dto.CategoryMapper.toCategoryDto;
 import static ru.practicum.category.dto.CategoryMapper.toCategoryFromNewCategoryDto;
@@ -29,7 +30,17 @@ public class CategoryAdminService implements CategoryAdminServiceInterface {
     @Override
     @Transactional
     public CategoryDto save(NewCategoryDto dto) {
+        if (dto.getName().isEmpty() || dto.getName().isBlank()
+        )  {
+            throw new EventBadRequestException("Не хватает данных в запросе") {
+                @Override
+                public String getMessage() {
+                    return super.getMessage();
+                }
+            };
+        } else {
         return toCategoryDto(categoryRepository.save(toCategoryFromNewCategoryDto(dto)));
+        }
     }
 
     @Override
