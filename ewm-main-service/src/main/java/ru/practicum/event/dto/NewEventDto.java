@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NewEventDto {
     @NotBlank
+    @NotNull
     @Size(min = 3, max = 120, message = "Title must not be blank or empty and contain between 3 and 120 characters.")
     private String title;
     @NotNull
