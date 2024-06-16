@@ -30,7 +30,7 @@ public class CategoryAdminService implements CategoryAdminServiceInterface {
     @Override
     @Transactional
     public CategoryDto save(NewCategoryDto dto) {
-        if (dto.getName().isEmpty() || dto.getName().isBlank()
+        if (dto.getName().isEmpty() || dto.getName().isBlank() || dto.getName().length() > 50
         )  {
             throw new EventBadRequestException("Не хватает данных в запросе") {
                 @Override
