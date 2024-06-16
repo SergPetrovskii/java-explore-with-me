@@ -11,7 +11,6 @@ import ru.practicum.event.dto.*;
 import ru.practicum.event.model.Event;
 import ru.practicum.event.model.EventLifecycleState;
 import ru.practicum.event.repository.EventRepository;
-import ru.practicum.exceptions.BadRequestException;
 import ru.practicum.exceptions.EventBadRequestException;
 import ru.practicum.exceptions.EventConflictException;
 import ru.practicum.exceptions.EventNotFoundException;
@@ -45,7 +44,7 @@ public class EventPrivateService implements EventPrivateServiceInterface {
     public EventFullDto save(Long userId, NewEventDto dto) {
         User user = userService.getExistingUser(userId);
         if (dto.getDescription().isEmpty()) {
-            throw new BadRequestException("Не хватает данных в запросе") {
+            throw new EventBadRequestException("Не хватает данных в запросе") {
                 @Override
                 public String getMessage() {
                     return super.getMessage();
