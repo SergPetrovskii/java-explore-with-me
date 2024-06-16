@@ -1,5 +1,5 @@
 FROM amazoncorretto:11
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081
-COPY target/*.jar app.jar
+COPY target/*.jar ewm-service.jar
 LABEL authors="Petrovskii"
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/ewm-service.jar"]
