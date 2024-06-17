@@ -9,9 +9,9 @@ import ru.practicum.category.dto.NewCategoryDto;
 import ru.practicum.category.model.Category;
 import ru.practicum.category.repository.CategoryRepository;
 import ru.practicum.event.service.EventPublicService;
+import ru.practicum.exceptions.BadRequestException;
 import ru.practicum.exceptions.CategoryConflictException;
 import ru.practicum.exceptions.CategoryNotFoundException;
-import ru.practicum.exceptions.EventBadRequestException;
 
 import static ru.practicum.category.dto.CategoryMapper.toCategoryDto;
 import static ru.practicum.category.dto.CategoryMapper.toCategoryFromNewCategoryDto;
@@ -30,9 +30,8 @@ public class CategoryAdminService implements CategoryAdminServiceInterface {
     @Override
     @Transactional
     public CategoryDto save(NewCategoryDto dto) {
-        if (dto.getName().isEmpty() || dto.getName().isBlank() || dto.getName().length() > 50
-        )  {
-            throw new EventBadRequestException("Не хватает данных в запросе") {
+        if (dto.getName().isEmpty() || dto.getName().isBlank() || dto.getName().length() > 50) {
+            throw new BadRequestException("Не хватает данных в запросе") {
                 @Override
                 public String getMessage() {
                     return super.getMessage();

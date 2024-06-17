@@ -74,7 +74,7 @@ public class ErrorHandler {
                 List.of(Arrays.toString(exception.getStackTrace())),
                 exception.getMessage(),
                 exception.getLocalizedMessage(),
-                HttpStatus.CONFLICT.toString(),
+                HttpStatus.INTERNAL_SERVER_ERROR.toString(),
                 LocalDateTime.now()
         );
     }
