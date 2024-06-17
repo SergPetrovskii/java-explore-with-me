@@ -31,7 +31,7 @@ public class ErrorHandler {
     @ExceptionHandler({BadRequestException.class, NumberFormatException.class,
             MethodArgumentTypeMismatchException.class, MethodArgumentNotValidException.class,
             MissingServletRequestParameterException.class, ConstraintViolationException.class,
-            EventBadRequestException.class})
+            EventBadRequestException.class, ParticiopationBadRequestException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleBadRequestException(final BadRequestException exception) {
         return new ApiError(
