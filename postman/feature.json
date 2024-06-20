@@ -394,7 +394,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments?eventId=103",
+					"raw": "{{baseUrl}}/users/:userId/comments?eventId=107",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -406,7 +406,7 @@
 					"query": [
 						{
 							"key": "eventId",
-							"value": "103"
+							"value": "107"
 						}
 					],
 					"variable": [
