@@ -230,7 +230,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments?eventId=106",
+					"raw": "{{baseUrl}}/users/:userId/comments?eventId=107",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -242,7 +242,7 @@
 					"query": [
 						{
 							"key": "eventId",
-							"value": "106"
+							"value": "107"
 						}
 					],
 					"variable": [
@@ -356,7 +356,7 @@
 					"variable": [
 						{
 							"key": "eventId",
-							"value": "101"
+							"value": "107"
 						}
 					]
 				},
@@ -412,7 +412,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "138"
 						}
 					]
 				}
@@ -461,13 +461,13 @@
 					"query": [
 						{
 							"key": "eventId",
-							"value": "106"
+							"value": "107"
 						}
 					],
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "123"
 						}
 					]
 				}
@@ -516,7 +516,7 @@
 					"query": [
 						{
 							"key": "eventId",
-							"value": "106"
+							"value": "107"
 						}
 					],
 					"variable": [
@@ -577,7 +577,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "138"
 						}
 					]
 				}
@@ -642,7 +642,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "138"
 						},
 						{
 							"key": "commentId",
@@ -688,7 +688,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "138"
 						},
 						{
 							"key": "commentId",
@@ -742,7 +742,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "1"
+							"value": "138"
 						}
 					]
 				}

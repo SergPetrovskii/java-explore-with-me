@@ -43,7 +43,7 @@ public class ErrorHandler {
         );
     }
 
-    @ExceptionHandler(CommentConflictException.class)
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflictException(final ConflictException exception) {
         return new ApiError(
