@@ -230,25 +230,24 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments?eventId=107",
+					"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"comments"
-					],
-					"query": [
-						{
-							"key": "eventId",
-							"value": "107"
-						}
+						"comments",
+						":eventId"
 					],
 					"variable": [
 						{
 							"key": "userId",
 							"value": "138"
+						},
+						{
+							"key": "eventId",
+							"value": "107"
 						}
 					]
 				}
@@ -281,6 +280,7 @@
 						"{{baseUrl}}"
 					],
 					"path": [
+						"admin",
 						"comments",
 						":commentId"
 					],
