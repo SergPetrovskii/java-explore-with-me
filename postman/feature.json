@@ -276,21 +276,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+					"raw": "{{baseUrl}}/admin/comments/:commentId",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"users",
-						":userId",
 						"comments",
 						":commentId"
 					],
 					"variable": [
-						{
-							"key": "userId",
-							"value": "138"
-						},
 						{
 							"key": "commentId",
 							"value": "1"
