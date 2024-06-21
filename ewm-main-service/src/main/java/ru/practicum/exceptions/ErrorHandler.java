@@ -45,7 +45,8 @@ public class ErrorHandler {
         );
     }
 
-    @ExceptionHandler
+    @ExceptionHandler({CategoryConflictException.class, CommentConflictException.class,
+            EventConflictException.class,RequestConflictException.class, ConflictException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflictException(final ConflictException exception) {
         return new ApiError(
