@@ -16,7 +16,9 @@ import java.util.List;
 
 @RestControllerAdvice
 public class ErrorHandler {
-    @ExceptionHandler
+    @ExceptionHandler({UserNotFoundException.class, CategoryNotFoundException.class,
+            CompilationNotFoundException.class, EventNotFoundException.class,
+            CommentNotFoundException.class, RequestNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiError handleNotFoundException(final NotFoundException exception) {
         return new ApiError(
@@ -43,7 +45,8 @@ public class ErrorHandler {
         );
     }
 
-    @ExceptionHandler
+    @ExceptionHandler({CategoryConflictException.class, CommentConflictException.class,
+            EventConflictException.class,RequestConflictException.class, ConflictException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflictException(final ConflictException exception) {
         return new ApiError(

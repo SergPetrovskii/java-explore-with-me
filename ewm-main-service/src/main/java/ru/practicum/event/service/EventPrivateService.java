@@ -11,6 +11,7 @@ import ru.practicum.event.dto.*;
 import ru.practicum.event.model.Event;
 import ru.practicum.event.model.EventLifecycleState;
 import ru.practicum.event.repository.EventRepository;
+import ru.practicum.exceptions.CommentConflictException;
 import ru.practicum.exceptions.EventBadRequestException;
 import ru.practicum.exceptions.EventConflictException;
 import ru.practicum.exceptions.EventNotFoundException;
@@ -174,6 +175,12 @@ public class EventPrivateService implements EventPrivateServiceInterface {
             } else if (state.equals(String.valueOf(CANCEL_REVIEW))) {
                 event.setState(CANCELED);
             }
+        }
+    }
+
+    public void validateEventToAddComment(Event event) {
+        if (event.getState() != PUBLISHED) {
+            throw new CommentConflictException("Невозможно оставить комментарий на неопубликованное событие");
         }
     }
 }
